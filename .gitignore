@@ -4,6 +4,8 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+# ignore properties file
+application.yml
 
 ### STS ###
 .apt_generated

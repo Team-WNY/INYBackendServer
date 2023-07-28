@@ -1,0 +1,35 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql8-189931f55b4-670efa2cac317f3c": {
+			"provider": "mysql",
+			"driver": "mysql8",
+			"name": "opensoftware",
+			"save-password": true,
+			"configuration": {
+				"host": "3.112.234.209",
+				"port": "3306",
+				"database": "opensoftware",
+				"url": "jdbc:mysql://3.112.234.209:3306/opensoftware",
+				"configurationType": "MANUAL",
+				"home": "mysql_client",
+				"type": "dev",
+				"auth-model": "native"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"smart-commit": false,
+			"smart-commit-recover": true,
+			"auto-close-transactions": true,
+			"close-transactions-period": 1800
+		}
+	}
+}
