@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.projectlombok:lombok:1.18.28'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	implementation 'org.mybatis:mybatis:3.5.13'
+	implementation 'org.postgresql:postgresql:42.2.23'
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
