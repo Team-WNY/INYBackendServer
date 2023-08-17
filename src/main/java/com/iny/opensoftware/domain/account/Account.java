@@ -28,9 +28,8 @@ public class Account {
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void save(AccountRepository repository) {
-		Assert.notNull(this.id, "계정의 순수 ID 값은 필수 값입니다.");
 		Assert.notNull(this.accountId, "계정의 ID 값도 필수 값입니다.");
 		
-		repository.save();
+		repository.save(this);
 	}
 }

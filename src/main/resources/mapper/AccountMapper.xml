@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iny.opensoftware.infrastructure.mybatis.mapper.AccountMapper">
+  
+  <resultMap id="accountResultMap" type="AccountObject">
+    <id property="id" column="id"/>
+    <result property="accountId" column="account_id"/>
+    <result property="password" column="password"/>
+    <result property="name" column="name"/>
+    <result property="nickName" column="nickname"/>
+    <result property="birthDay" column="birthdate"/>
+    <result property="email" column="email"/>
+    <result property="address" column="address"/>
+    <result property="redHeart" column="red_heart_count"/>
+    <result property="blackHeart" column="black_heart_count"/>
+    <result property="follower" column="follower_count"/>
+    <result property="following" column="following_count"/>
+    <result property="uploadAmiCount" column="uploaded_ami_count"/>
+    <result property="auth" column="auth"/>
+  </resultMap>
+  
+  <select id="selectAccountById" resultMap="accountResultMap" parameterType="long">
+    SELECT *
+    FROM Account
+    WHERE id = #{id}
+  </select>
+
+  <insert id="insertAccount" parameterType="AccountObject">
+    INSERT INTO Account (
+        account_id,
+        password,
+        name,
+        nickname,
+        birthdate,
+        email,
+        address,
+        black_heart_count,
+        red_heart_count,
+        follower_count,
+        following_count,
+        uploaded_ami_count,
+        auth
+    )
+    VALUES (
+        #{accountId},
+        #{password},
+        #{name},
+        #{nickName},
+        #{birthDay},
+        #{email},
+        #{address},
+        #{blackHeart},
+        #{redHeart},
+        #{follower},
+        #{following},
+        #{uploadAmiCount},
+        #{auth}
+    )
+</insert>
+
+<update id="updateAccount" parameterType="AccountObject">
+    UPDATE account
+    <set>
+        <if test="accountId != null and accountId != '' and accountId != originalAccountId">account_id = #{accountId},</if>
+        <if test="password != null and password != '' and password != originalPassword">password = #{password},</if>
+        <if test="name != null and name != '' and name != originalName">name = #{name},</if>
+        <if test="nickName != null and nickName != '' and nickName != originalNickName">nickname = #{nickName},</if>
+        <if test="birthDay != null and birthDay != '' and birthDay != originalBirthDay">birthdate = #{birthDay},</if>
+        <if test="email != null and email != '' and email != originalEmail">email = #{email},</if>
+        <if test="address != null and address != '' and address != originalAddress">address = #{address},</if>
+        <if test="blackHeart != null and blackHeart != originalBlackHeart">black_heart_count = #{blackHeart},</if>
+        <if test="redHeart != null and redHeart != originalRedHeart">red_heart_count = #{redHeart},</if>
+        <if test="follower != null and follower != originalFollower">follower_count = #{follower},</if>
+        <if test="following != null and following != originalFollowing">following_count = #{following},</if>
+        <if test="uploadAmiCount != null and uploadAmiCount != originalUploadAmiCount">uploaded_ami_count = #{uploadAmiCount},</if>
+        <if test="auth != null and auth != '' and auth != originalAuth">auth = #{auth},</if>
+    </set>
+    WHERE id = #{id}
+</update>
+
+<select id="nowId" resultType="long" parameterType="String">
+    SELECT id
+    FROM Account
+    WHERE account_id = #{accountid}
+</select>
+
+</mapper>

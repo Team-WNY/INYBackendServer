@@ -1,5 +1,7 @@
+create sequence account_sequence start 1 increment 1;
+
  CREATE TABLE account (
-    id SERIAL PRIMARY KEY,
+    id BIGINT DEFAULT nextval('account_sequence') PRIMARY KEY,
     account_id VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
     name VARCHAR(50) NOT NULL,

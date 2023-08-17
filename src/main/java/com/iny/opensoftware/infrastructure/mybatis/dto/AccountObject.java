@@ -44,5 +44,7 @@ public class AccountObject {
 	private Integer following;
 	
 	private Integer uploadAmiCount;
+	
+	private String auth;
 
 }
