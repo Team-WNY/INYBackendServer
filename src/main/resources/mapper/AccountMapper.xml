@@ -24,6 +24,24 @@
     FROM Account
     WHERE id = #{id}
   </select>
+  
+  <select id="selectAccountByAccountId" resultMap="accountResultMap" parameterType="String">
+    SELECT *
+    FROM Account
+    WHERE account_id = #{accountId}
+  </select>
+  
+  <select id="selectAllAccount" resultMap="accountResultMap">
+    SELECT *
+    FROM Account
+  </select>
+  
+  <select id="isAccountId" resultType="String" parameterType="String">
+    SELECT account_id
+    FROM Account
+    WHERE account_id = #{accountid}
+  </select>
+  
 
   <insert id="insertAccount" parameterType="AccountObject">
     INSERT INTO Account (
@@ -61,19 +79,19 @@
 <update id="updateAccount" parameterType="AccountObject">
     UPDATE account
     <set>
-        <if test="accountId != null and accountId != '' and accountId != originalAccountId">account_id = #{accountId},</if>
-        <if test="password != null and password != '' and password != originalPassword">password = #{password},</if>
-        <if test="name != null and name != '' and name != originalName">name = #{name},</if>
-        <if test="nickName != null and nickName != '' and nickName != originalNickName">nickname = #{nickName},</if>
-        <if test="birthDay != null and birthDay != '' and birthDay != originalBirthDay">birthdate = #{birthDay},</if>
-        <if test="email != null and email != '' and email != originalEmail">email = #{email},</if>
-        <if test="address != null and address != '' and address != originalAddress">address = #{address},</if>
-        <if test="blackHeart != null and blackHeart != originalBlackHeart">black_heart_count = #{blackHeart},</if>
-        <if test="redHeart != null and redHeart != originalRedHeart">red_heart_count = #{redHeart},</if>
-        <if test="follower != null and follower != originalFollower">follower_count = #{follower},</if>
-        <if test="following != null and following != originalFollowing">following_count = #{following},</if>
-        <if test="uploadAmiCount != null and uploadAmiCount != originalUploadAmiCount">uploaded_ami_count = #{uploadAmiCount},</if>
-        <if test="auth != null and auth != '' and auth != originalAuth">auth = #{auth},</if>
+        <if test="accountId != null and accountId != ''">account_id = #{accountId},</if>
+        <if test="password != null and password != ''">password = #{password},</if>
+        <if test="name != null and name != ''">name = #{name},</if>
+        <if test="nickName != null and nickName != ''">nickname = #{nickName},</if>
+        <if test="birthDay != null">birthdate = #{birthDay},</if>
+        <if test="email != null and email != ''">email = #{email},</if>
+        <if test="address != null and address != ''">address = #{address},</if>
+        <if test="blackHeart != null">black_heart_count = #{blackHeart},</if>
+        <if test="redHeart != null">red_heart_count = #{redHeart},</if>
+        <if test="follower != null">follower_count = #{follower},</if>
+        <if test="following != null">following_count = #{following},</if>
+        <if test="uploadAmiCount != null">uploaded_ami_count = #{uploadAmiCount},</if>
+        <if test="auth != null and auth != ''">auth = #{auth},</if>
     </set>
     WHERE id = #{id}
 </update>

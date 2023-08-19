@@ -56,4 +56,21 @@ public class AccountTests {
 		account.save(repository);
 	}
 	
+	@Test
+	public void 변경테스트() {
+		Account account = this.factory.getInstance();
+		
+		account.setId(AccountId.of(5));
+		account.setAccountId("Test3");
+		account.setPassword("1234");
+		account.setProfile(new UserProfile("홍길동2", "TestNick", Timestamp.valueOf("2023-01-01 11:12:11").toInstant(), "aaaa3@gmail.net", "서울 어딘가 니네집"));
+		account.setHeart(new Heart(2, 2));
+		account.setFollower(11);
+		account.setFollowing(12);
+		account.setUploadAmiCount(1);
+		account.setAuth(Authorize.Admin);
+		
+		account.save(repository);
+	}
+	
 }

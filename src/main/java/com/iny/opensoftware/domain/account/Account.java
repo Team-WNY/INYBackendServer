@@ -16,15 +16,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @DomainEntity
 public class Account {
-	AccountId id;
-	String accountId;
-	String password;
-	UserProfile profile;
-	Heart heart;
-	Integer follower;
-	Integer following;
-	Integer uploadAmiCount;
-	Authorize auth;
+	private AccountId id;
+	private String accountId;
+	private String password;
+	private UserProfile profile;
+	private Heart heart;
+	private Integer follower;
+	private Integer following;
+	private Integer uploadAmiCount;
+	private Authorize auth;
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void save(AccountRepository repository) {
@@ -32,4 +32,6 @@ public class Account {
 		
 		repository.save(this);
 	}
+	
+
 }
