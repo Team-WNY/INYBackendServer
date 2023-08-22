@@ -73,4 +73,86 @@ public class AccountTests {
 		account.save(repository);
 	}
 	
+	@Test
+	public void 도메인_테스트() {
+		Account account = this.factory.getInstance();
+		
+		account.setId(AccountId.of(5));
+		account.fetchById(this.repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString());
+		log.info("---------------------------------------------------------");
+		
+		int tmp = account.followerUp(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		tmp = account.followerDown(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		tmp = account.followingUp(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		tmp = account.followingDown(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		account.authorizeAccount(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString());
+		log.info("---------------------------------------------------------");
+		
+		account.setAuth(Authorize.Admin);
+		repository.save(account);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString());
+		log.info("---------------------------------------------------------");
+		
+		tmp = account.upLoadAmiCountUp(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		tmp = account.upLoadAmiCountDown(repository);
+		
+		log.info("---------------------------------------------------------");
+		log.info("account" + account.toString() + " : " + tmp);
+		log.info("---------------------------------------------------------");
+		
+		Account account2 = this.factory.getInstance();
+		
+		account2.setAccountId("Test");
+		account2.fetchByAccountId(repository);
+		account2.setPassword("1234");
+		
+		log.info("---------------------------------------------------------");
+		log.info("account2" + account2.toString());
+		log.info("---------------------------------------------------------");
+		
+		boolean tmpBool = account2.authenticateAccount(repository, "Test", "1234");
+		
+		log.info("---------------------------------------------------------");
+		log.info("account2 yes? : " + tmpBool);
+		log.info("---------------------------------------------------------");
+		
+		tmpBool = account2.authenticateAccount(repository, "Test1", "12346");
+		
+		log.info("---------------------------------------------------------");
+		log.info("account2 yes? : " + tmpBool);
+		log.info("---------------------------------------------------------");
+	}
 }

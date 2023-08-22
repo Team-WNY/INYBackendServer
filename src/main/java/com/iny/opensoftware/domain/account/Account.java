@@ -59,7 +59,7 @@ public class Account {
 	public void fetchByAccountId(AccountRepository repository) {
 		Account stored = repository.getOneAccountByAccountId(this.accountId);
 		
-		this.setAccountId(stored.getAccountId());
+		this.setId(stored.getId());
 		this.setAuth(stored.getAuth());
 		this.setProfile(stored.getProfile());
 		this.setHeart(stored.getHeart());
@@ -77,7 +77,7 @@ public class Account {
 	public void fetchById(AccountRepository repository) {
 		Account stored = repository.getOneAccountById(this.id.getValue());
 		
-		this.setId(stored.getId());
+		this.setAccountId(stored.getAccountId());
 		this.setAuth(stored.getAuth());
 		this.setProfile(stored.getProfile());
 		this.setHeart(stored.getHeart());
@@ -178,11 +178,29 @@ public class Account {
 	 * 계정 인증 완료 후, 계정의 권한 변경
 	 * @param repository
 	 */
-	public void authenticatedAccount(AccountRepository repository ) {
+	public void authorizeAccount(AccountRepository repository ) {
 		Assert.notNull(this.auth, "권한은 null일 수 없습니다.");
 		
 		this.setAuth(Authorize.Auth);
 		repository.save(this);
+	}
+	
+	/**
+	 * 로그인 시, 계정 체크
+	 * @param repository
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public Boolean authenticateAccount(AccountRepository repository, String username, String password) {
+		Assert.notNull(this.accountId, "계정 Id는 null일 수 없습니다.");
+		Assert.notNull(this.password, "계정 password는 null일 수 없습니다.");
+		
+		if(this.accountId.equals(username) && this.password.equals(password)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	
