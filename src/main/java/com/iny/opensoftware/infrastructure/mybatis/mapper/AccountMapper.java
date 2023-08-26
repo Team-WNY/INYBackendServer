@@ -14,8 +14,9 @@ public interface AccountMapper {
 	List<AccountObject> selectAllAccount();
 	
 	// 중복 계정 체크용
-	String isAccountId(@Param("accountid") String accountId);
+	String isAccountId(@Param("accountId") String accountId);
 	Integer insertAccount(AccountObject data);
 	Integer updateAccount(AccountObject data);
 	Long nowId(@Param("accountid") String accountId);
+	String findAccountIdByEmail(@Param("email") String email);
 }

@@ -203,6 +203,15 @@ public class Account {
 		}
 	}
 	
+	/**
+	 * Email값을 통해서 AccountID 반환
+	 * @param repository
+	 * @return
+	 */
+	public String findAccountId(AccountRepository repository) {
+		return repository.getAccountIdByEmail(this.profile.getEmail());
+	}
+	
 	
 	// TODO : Heart 관련 기획 확정 후 개발 진행
 	

@@ -8,4 +8,5 @@ public interface AccountRepository {
 	Account getOneAccountByAccountId(String accountId);
 	List<Account> getAllAccount();
 	Boolean isAccount(String accountId);
+	String getAccountIdByEmail(String email);
 }

@@ -65,8 +65,8 @@ public class MybatisAccountRepository implements AccountRepository{
 	}
 
 	@Override
-	public Account getOneAccountByAccountId(String id) {
-		return Optional.ofNullable(this.mapper.selectAccountByAccountId(id))
+	public Account getOneAccountByAccountId(String accountId) {
+		return Optional.ofNullable(this.mapper.selectAccountByAccountId(accountId))
 				.map(this.converter::convert)
 				.orElse(null);
 	}
@@ -85,6 +85,12 @@ public class MybatisAccountRepository implements AccountRepository{
 		return Optional.ofNullable(this.mapper.isAccountId(accountId))
 				.filter(id -> !id.isEmpty())
 				.isPresent();
+	}
+	
+	@Override
+	public String getAccountIdByEmail(String email) {
+		return Optional.ofNullable(this.mapper.findAccountIdByEmail(email))
+				.orElse(null);
 	}
 
 	/**

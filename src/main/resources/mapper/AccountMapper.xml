@@ -25,6 +25,12 @@
     WHERE id = #{id}
   </select>
   
+  <select id="findAccountIdByEmail" resultType="String" parameterType="String">
+    SELECT account_id
+    FROM Account
+    WHERE email = #{email}
+  </select>
+  
   <select id="selectAccountByAccountId" resultMap="accountResultMap" parameterType="String">
     SELECT *
     FROM Account
