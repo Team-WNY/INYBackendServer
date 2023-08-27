@@ -35,6 +35,8 @@ public class AccountObject {
 	
 	private String address;
 	
+	private String phoneNumber;
+	
 	private Integer blackHeart;
 	
 	private Integer redHeart;

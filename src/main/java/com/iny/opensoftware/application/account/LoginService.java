@@ -2,7 +2,7 @@ package com.iny.opensoftware.application.account;
 
 import com.iny.opensoftware.application.exception.AccountFindFailedException;
 import com.iny.opensoftware.application.exception.AccountVerifyFailException;
-import com.iny.opensoftware.domain.account.Account;
+import com.iny.opensoftware.presentation.api.v1.account.obj.SignUpObject;
 
 public interface LoginService {
 	
@@ -19,7 +19,7 @@ public interface LoginService {
 	/**
 	 * 회원 가입
 	 */
-	public void signUp(Account account);
+	public void signUp(SignUpObject data);
 	
 	/**
 	 * 아이디 찾기
@@ -29,5 +29,5 @@ public interface LoginService {
 	/**
 	 * 임시 비번 발급
 	 */
-	public String passwordFind(String accountId) throws AccountFindFailedException;
+	public String passwordFind(String accountId,  String email, String code) throws AccountFindFailedException;
 }

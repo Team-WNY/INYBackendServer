@@ -109,6 +109,7 @@ public class MybatisAccountRepository implements AccountRepository{
 		obj.setName(Optional.ofNullable(account.getProfile().getName()).orElse(""));
 		obj.setNickName(Optional.ofNullable(account.getProfile().getNickName()).orElse(""));
 		obj.setBirthDay(Optional.ofNullable(Timestamp.from(account.getProfile().getBirthDay())).orElse(Timestamp.from(Instant.now())));
+		obj.setPhoneNumber(Optional.ofNullable(account.getProfile().getPhoneNumber()).orElse(null));
 		obj.setEmail(Optional.ofNullable(account.getProfile().getEmail()).orElse(""));
 		obj.setAddress(Optional.ofNullable(account.getProfile().getAddress()).orElse(""));
 		obj.setBlackHeart(Optional.ofNullable(account.getHeart().getBlackHeart()).orElse(0));

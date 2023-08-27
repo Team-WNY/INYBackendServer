@@ -44,9 +44,9 @@ public class AccountTests {
 	public void 생성테스트() {
 		Account account = this.factory.getInstance();
 		
-		account.setAccountId("Test3");
+		account.setAccountId("Test5");
 		account.setPassword("1234");
-		account.setProfile(new UserProfile("홍길동", "TestNick", Timestamp.valueOf("2023-01-01 11:12:11").toInstant(), "aaaa3@gmail.net", "서울 어딘가 니네집"));
+		account.setProfile(new UserProfile("홍길동", "TestNick", Timestamp.valueOf("2023-01-01 11:12:11").toInstant(),"010-1234-5678", "aaaa4@gmail.net", "서울 어딘가 니네집"));
 		account.setHeart(new Heart(2, 2));
 		account.setFollower(10);
 		account.setFollowing(12);
@@ -63,7 +63,7 @@ public class AccountTests {
 		account.setId(AccountId.of(5));
 		account.setAccountId("Test3");
 		account.setPassword("1234");
-		account.setProfile(new UserProfile("홍길동2", "TestNick", Timestamp.valueOf("2023-01-01 11:12:11").toInstant(), "aaaa3@gmail.net", "서울 어딘가 니네집"));
+		account.setProfile(new UserProfile("홍길동2", "TestNick", Timestamp.valueOf("2023-01-01 11:12:11").toInstant(),"010-1234-5671", "aaaa4@gmail.net", "서울 어딘가 니네집"));
 		account.setHeart(new Heart(2, 2));
 		account.setFollower(11);
 		account.setFollowing(12);

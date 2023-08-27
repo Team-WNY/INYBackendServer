@@ -9,6 +9,7 @@
     <result property="name" column="name"/>
     <result property="nickName" column="nickname"/>
     <result property="birthDay" column="birthdate"/>
+    <result property="phoneNumber" column="phone_number"/>
     <result property="email" column="email"/>
     <result property="address" column="address"/>
     <result property="redHeart" column="red_heart_count"/>
@@ -57,6 +58,7 @@
         nickname,
         birthdate,
         email,
+        phone_number,
         address,
         black_heart_count,
         red_heart_count,
@@ -72,6 +74,7 @@
         #{nickName},
         #{birthDay},
         #{email},
+        #{phoneNumber},
         #{address},
         #{blackHeart},
         #{redHeart},

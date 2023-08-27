@@ -13,6 +13,7 @@ public class UserProfile {
 	String name;
 	String nickName;
 	Instant birthDay;
+	String phoneNumber;
 	String email;
 	String address;
 }
