@@ -46,7 +46,7 @@
   <select id="isAccountId" resultType="String" parameterType="String">
     SELECT account_id
     FROM Account
-    WHERE account_id = #{accountid}
+    WHERE account_id = #{accountId}
   </select>
   
 
@@ -108,7 +108,7 @@
 <select id="nowId" resultType="long" parameterType="String">
     SELECT id
     FROM Account
-    WHERE account_id = #{accountid}
+    WHERE account_id = #{accountId}
 </select>
 
 </mapper>

@@ -30,4 +30,9 @@ public interface LoginService {
 	 * 임시 비번 발급
 	 */
 	public String passwordFind(String accountId,  String email, String code) throws AccountFindFailedException;
+	
+	/**
+	 * 패스워드 변경
+	 */
+	public void changePassword(String accountId, String passowrd);
 }

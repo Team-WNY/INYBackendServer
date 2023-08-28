@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Base64;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -58,7 +59,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		Account account = this.repository.getOneAccountByAccountId(accountId);
 		
-		return account.checkAccount(repository);
+		return Optional.ofNullable(account).isPresent();
 	}
 
 	/**
@@ -132,6 +133,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		Account account = this.factory.getInstance();
 		account.setAccountId(accountId);
+		account.setProfile(new UserProfile());
 		account.getProfile().setEmail(email);
 
 		// 계정이 DB에 있는지 체크 / DB에 저장된 계정의 이메일 값으로 계정을 찾아서 현재 입력된 계정과 매칭
@@ -147,6 +149,22 @@ public class LoginServiceImpl implements LoginService {
 		account.save(this.repository);
 		
 		return tmpPassword;
+	}
+	
+	/**
+	 * 패스워드 변경
+	 */
+	@Override
+	public void changePassword(String accountId, String passowrd) {
+		Assert.hasText(accountId, "계정이 없습니다.");
+		Assert.hasText(passowrd, "패스워드가 없습니다.");
+		
+		Account account = this.factory.getInstance();
+		account.setAccountId(accountId);
+		account.fetchByAccountId(this.repository);
+		
+		account.setPassword(passowrd);
+		account.save(repository);
 	}
 	
 	/**
@@ -166,5 +184,7 @@ public class LoginServiceImpl implements LoginService {
         
         return temporaryPassword;
     }
+
+	
 
 }

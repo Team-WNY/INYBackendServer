@@ -80,7 +80,7 @@ public class AccountController {
 	
 	
 	// 아이디 찾기
-	@PostMapping("/find/id")
+	@PostMapping("/find/accountId")
 	public ApiResponse<Data> findAccountId(@RequestParam(name = "email") String email){
 		
 		ApiResponse<Data> res = ApiResponse.of(new Data());
@@ -93,6 +93,7 @@ public class AccountController {
 			resData.setAccountId(userAccountId);
 			res.setStatus(HttpServletResponse.SC_OK);
 			res.setMessage("Success");
+			res.setPayload(resData);
 			
 		} catch(IllegalArgumentException e) {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
@@ -111,9 +112,111 @@ public class AccountController {
 		return res;
 	}
 	
-	// 비밀번호 찾기
+	// 임시 비밀번호 발급
+	@PostMapping("/find/password")
+	public ApiResponse<Data> findPassword(@RequestParam(name = "email") String email,
+									  @RequestParam(name = "accountId") String accountId,
+									  @RequestParam(name = "code") String code){
+		
+		ApiResponse<Data> res = ApiResponse.of(new Data());
+		Data resData = new Data();
+		
+		try {
+			
+			String tmpPassword = this.loginService.passwordFind(accountId, email, code);
+			
+			resData.setAccountId(accountId);
+			resData.setPassword(tmpPassword);
+			res.setStatus(HttpServletResponse.SC_OK);
+			res.setMessage("Success");
+			res.setPayload(resData);
+			
+		} catch(IllegalArgumentException e) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			res.setMessage("Fail");
+			resData.setMessage("이메일, 아이디, 코드 값이 없음");
+			res.setPayload(resData);
+			e.printStackTrace();
+		} catch(Exception e) {
+			res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			res.setMessage("Fail");
+			resData.setMessage("알수 없는 에러");
+			res.setPayload(resData);
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
 	// 비밀번호 변경
+	@PostMapping("/change/password")
+	public ApiResponse<Data> changePassword(@RequestParam(name = "accountId") String accountId,
+									  @RequestParam(name = "password") String password){
+		
+		ApiResponse<Data> res = ApiResponse.of(new Data());
+		Data resData = new Data();
+		
+		try {
+			
+			this.loginService.changePassword(accountId, password);
+			
+			resData.setAccountId(accountId);
+			resData.setPassword(password);
+			res.setStatus(HttpServletResponse.SC_OK);
+			res.setMessage("Success");
+			res.setPayload(resData);
+			
+		} catch(IllegalArgumentException e) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			res.setMessage("Fail");
+			resData.setMessage("아이디, 패스워드 값이 없음");
+			res.setPayload(resData);
+			e.printStackTrace();
+		} catch(Exception e) {
+			res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			res.setMessage("Fail");
+			resData.setMessage("알수 없는 에러");
+			res.setPayload(resData);
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+	
 	// 계정 중복 체크
+	@PostMapping("/check/accountId")
+	public ApiResponse<Data> changePassword(@RequestParam(name = "accountId") String accountId){
+		
+		ApiResponse<Data> res = ApiResponse.of(new Data());
+		Data resData = new Data();
+		
+		try {
+			
+			Boolean check = this.loginService.accountDuplication(accountId);
+			
+			resData.setAccountId(accountId);
+			resData.setMessage("중복 계정 여부 : " + check);
+			resData.setDuplication(check);
+			res.setStatus(HttpServletResponse.SC_OK);
+			res.setMessage("Success");
+			res.setPayload(resData);
+			
+		} catch(IllegalArgumentException e) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			res.setMessage("Fail");
+			resData.setMessage("아이디, 패스워드 값이 없음");
+			res.setPayload(resData);
+			e.printStackTrace();
+		} catch(Exception e) {
+			res.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			res.setMessage("Fail");
+			resData.setMessage("알수 없는 에러");
+			res.setPayload(resData);
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
 	
 	@lombok.Data
 	static class Data {
@@ -121,6 +224,8 @@ public class AccountController {
 		private String accountId;
 		@JsonProperty("password")
 		private String password;
+		@JsonProperty("Duplication")
+		private boolean duplication;
 		@JsonProperty("message")
 		private String Message;
 	}
