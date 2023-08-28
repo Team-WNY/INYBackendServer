@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.iny.opensoftware.infrastructure.jwt.JwtTokenProvider;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ import lombok.Setter;
 @RestController
 @CrossOrigin
 @RequiredArgsConstructor
+@Tag(name = "토큰 컨트롤러", description = "로그인 완료 시, 토큰 발급")
 @RequestMapping("/api/v1/auth")
 public class AuthController {
 

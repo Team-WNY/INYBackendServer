@@ -46,7 +46,7 @@ public class WebSecurityConfig {
                     		"/",
                     		"/swagger-ui/**",
                     		"/api/v1/auth/**",
-                    		"/api/v1/account/**"
+                    		"/api/v1/account/nt/**"
                     		)
                     		.permitAll()
                             .anyRequest().authenticated()
@@ -95,7 +95,7 @@ public class WebSecurityConfig {
                 "/images/**",
                 "/swagger-ui/**",
                 "/api/v1/auth/**",
-                "/api/v1/account/**",
+                "/api/v1/account/nt/**",
                 "/v3/api-docs/**"
         		);  
     }

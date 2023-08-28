@@ -71,6 +71,7 @@ public class LoginServiceImpl implements LoginService {
 		Assert.notNull(code, "code값이 없으면 인증 절차를 진행할 수 없습니다.");
 		
 		Account account = this.factory.getInstance();
+		account.setProfile(new UserProfile());
 		account.getProfile().setEmail(email);
 		
 		account.setAccountId(account.findAccountId(this.repository));
@@ -168,6 +169,16 @@ public class LoginServiceImpl implements LoginService {
 	}
 	
 	/**
+	 * AccountId 값으로 계정 정보 반환
+	 */
+	@Override
+	public Account getAccountStatus(String accountId) {
+		Assert.hasText(accountId, "계정이 없습니다.");
+		
+		return this.repository.getOneAccountByAccountId(accountId);
+	}
+	
+	/**
 	 * 임시 패스워드 발급
 	 * @return
 	 */
@@ -184,7 +195,5 @@ public class LoginServiceImpl implements LoginService {
         
         return temporaryPassword;
     }
-
-	
 
 }

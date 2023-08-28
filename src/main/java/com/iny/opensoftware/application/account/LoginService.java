@@ -2,6 +2,7 @@ package com.iny.opensoftware.application.account;
 
 import com.iny.opensoftware.application.exception.AccountFindFailedException;
 import com.iny.opensoftware.application.exception.AccountVerifyFailException;
+import com.iny.opensoftware.domain.account.Account;
 import com.iny.opensoftware.presentation.api.v1.account.obj.SignUpObject;
 
 public interface LoginService {
@@ -35,4 +36,9 @@ public interface LoginService {
 	 * 패스워드 변경
 	 */
 	public void changePassword(String accountId, String passowrd);
+	
+	/**
+	 * 계정 정보 반환
+	 */
+	public Account getAccountStatus(String accountId);
 }
