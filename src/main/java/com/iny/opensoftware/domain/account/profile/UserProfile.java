@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserProfile {
-	String name;
-	String nickName;
-	Instant birthDay;
-	String phoneNumber;
-	String email;
-	String address;
+	private String name;
+	private String nickName;
+	private Instant birthDay;
+	private String phoneNumber;
+	private String email;
+	private String address;
 }

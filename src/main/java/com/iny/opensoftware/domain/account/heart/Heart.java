@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Heart {
-	Integer blackHeart;
-	Integer redHeart;
+	private Integer blackHeart;
+	private Integer redHeart;
 }
