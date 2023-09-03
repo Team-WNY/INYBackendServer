@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iny.opensoftware.infrastructure.mybatis.mapper.BoardMapper">
+  
+  <resultMap id="boardResultMap" type="BoardObject">
+    <id property="id" column="id"/>
+    <result property="title" column="title"/>
+    <result property="contents" column="contents"/>
+    <result property="register" column="register"/>
+    <result property="upLoadTime" column="upload_time"/>
+    <result property="location" column="location"/>
+    <result property="roomStatus" column="room_status"/>
+    <result property="roomType" column="room_type"/>
+    <result property="delType" column="del_type"/>
+    <result property="createdAt" column="created_at"/>
+    <result property="updatedAt" column="updated_at"/>
+  </resultMap>
+  
+  <select id="selectAccountById" resultMap="boardResultMap" parameterType="long">
+    SELECT *
+    FROM Board
+    WHERE id = #{id}
+  </select>
+
+  <insert id="insertBoard" parameterType="BoardObject">
+    INSERT INTO Board (
+        title,
+        contents,
+        location,
+        room_status,
+        room_type,
+        del_type
+    )
+    VALUES (
+        #{title},
+        #{contents},
+        #{location},
+        #{roomStatus},
+        #{roomType},
+        #{delType}
+    )
+</insert>
+
+<update id="updateBoard" parameterType="BoardObject">
+    UPDATE board
+    <set>
+        <if test="title != null and title != ''">title = #{title},</if>
+        <if test="contents != null and contents != ''">contents = #{contents},</if>
+        <if test="location != null and location != ''">location = #{location},</if>
+        <if test="room_status != null and room_status != ''">room_status = #{roomStatus},</if>
+        <if test="room_type != null and room_status != ''">room_type = #{roomType},</if>
+        <if test="del_type != null and del_type != ''">del_type = #{del_type}</if>
+    </set>
+    WHERE id = #{id}
+</update>
+
+</mapper>
