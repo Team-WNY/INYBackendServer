@@ -35,7 +35,7 @@ public class AuthController {
     
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-	                authenticationRequest.getUsername(), 
+	                authenticationRequest.getAccountId(), 
 	                authenticationRequest.getPassword()
                 )
         );
@@ -50,7 +50,7 @@ public class AuthController {
     @Getter
     @Setter
     public static class AuthenticationRequest {
-    	  private String username;
+    	  private String accountId;
     	  private String password;
     }
     
