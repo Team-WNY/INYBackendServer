@@ -17,6 +17,6 @@ public interface AccountMapper {
 	String isAccountId(@Param("accountId") String accountId);
 	Integer insertAccount(AccountObject data);
 	Integer updateAccount(AccountObject data);
-	Long nowId(@Param("accountid") String accountId);
+	Long nowId(@Param("accountId") String accountId);
 	String findAccountIdByEmail(@Param("email") String email);
 }
