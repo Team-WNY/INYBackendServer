@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iny.opensoftware.infrastructure.mybatis.mapper.CommentMapper">
+  
+  <resultMap id="commentResultMap" type="CommentObject">
+    <id property="id" column="id"/>
+    <result property="boardId" column="board_id"/>
+    <result property="commentContents" column="content"/>
+    <result property="commentRegister" column="commenter"/>
+    <result property="createdAt" column="created_at"/>
+    <result property="updatedAt" column="updated_at"/>
+  </resultMap>
+  
+  <select id="getComments" resultMap="commentResultMap" parameterType="long">
+    SELECT *
+    FROM Board
+    WHERE board_id = #{boardId}
+  </select>
+
+  <insert id="addComment" parameterType="CommentObject">
+    INSERT INTO Board (
+        board_id,
+        content,
+        commenter
+    )
+    VALUES (
+        #{boardId},
+        #{commentContents},
+        #{commentRegister}
+    )
+	</insert>
+
+</mapper>

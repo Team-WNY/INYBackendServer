@@ -16,16 +16,29 @@
     <result property="updatedAt" column="updated_at"/>
   </resultMap>
   
-  <select id="selectAccountById" resultMap="boardResultMap" parameterType="long">
+  <select id="selectBoardById" resultMap="boardResultMap" parameterType="long">
     SELECT *
     FROM Board
     WHERE id = #{id}
+  </select>
+  
+  <select id="selectBoardByRegister" resultMap="boardResultMap" parameterType="String">
+    SELECT *
+    FROM Board
+    WHERE register = #{register}
+  </select>
+  
+  <select id="selectAllBoardByRoomType" resultMap="boardResultMap" parameterType="String">
+    SELECT *
+    FROM Board
+    WHERE room_type = #{roomType}
   </select>
 
   <insert id="insertBoard" parameterType="BoardObject">
     INSERT INTO Board (
         title,
         contents,
+        register,
         location,
         room_status,
         room_type,
@@ -34,24 +47,27 @@
     VALUES (
         #{title},
         #{contents},
+        #{register},
         #{location},
         #{roomStatus},
         #{roomType},
         #{delType}
     )
-</insert>
+	</insert>
 
-<update id="updateBoard" parameterType="BoardObject">
+	<update id="updateBoard" parameterType="BoardObject">
     UPDATE board
     <set>
         <if test="title != null and title != ''">title = #{title},</if>
         <if test="contents != null and contents != ''">contents = #{contents},</if>
+        <if test="register != null and register != ''">register = #{register},</if>
         <if test="location != null and location != ''">location = #{location},</if>
-        <if test="room_status != null and room_status != ''">room_status = #{roomStatus},</if>
-        <if test="room_type != null and room_status != ''">room_type = #{roomType},</if>
-        <if test="del_type != null and del_type != ''">del_type = #{del_type}</if>
+        <if test="roomStatus != null and roomStatus != ''">room_status = #{roomStatus},</if>
+        <if test="roomType != null and roomType != ''">room_type = #{roomType},</if>
+        <if test="delType != null and delType != ''">del_type = #{delType}</if>
+        <if test="updatedAt != null and updatedAt != ''">updated_at = #{updatedAt}</if>
     </set>
     WHERE id = #{id}
-</update>
+	</update>
 
 </mapper>
