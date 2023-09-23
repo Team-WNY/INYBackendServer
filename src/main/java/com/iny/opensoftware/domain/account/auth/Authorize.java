@@ -1,9 +1,9 @@
 package com.iny.opensoftware.domain.account.auth;
 
 public enum Authorize {
-	Auth(0, "인증된 사용자"),
-	NonAuth(-1, "인증되지 사용자"),
-	Admin(1, "운영자");
+	AUTH(0, "인증된 사용자"),
+	NONAUTH(-1, "인증되지 사용자"),
+	ADMIN(1, "운영자");
 	
 	private final Integer code;
 	private final String comment;

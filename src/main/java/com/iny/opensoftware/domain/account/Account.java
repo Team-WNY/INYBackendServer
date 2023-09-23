@@ -181,7 +181,7 @@ public class Account {
 	public void authorizeAccount(AccountRepository repository ) {
 		Assert.notNull(this.auth, "권한은 null일 수 없습니다.");
 		
-		this.setAuth(Authorize.Auth);
+		this.setAuth(Authorize.AUTH);
 		repository.save(this);
 	}
 	

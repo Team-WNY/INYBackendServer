@@ -51,7 +51,7 @@ public class AccountTests {
 		account.setFollower(10);
 		account.setFollowing(12);
 		account.setUploadAmiCount(0);
-		account.setAuth(Authorize.Admin);
+		account.setAuth(Authorize.ADMIN);
 		
 		account.save(repository);
 	}
@@ -68,7 +68,7 @@ public class AccountTests {
 		account.setFollower(11);
 		account.setFollowing(12);
 		account.setUploadAmiCount(1);
-		account.setAuth(Authorize.Admin);
+		account.setAuth(Authorize.ADMIN);
 		
 		account.save(repository);
 	}
@@ -114,7 +114,7 @@ public class AccountTests {
 		log.info("account" + account.toString());
 		log.info("---------------------------------------------------------");
 		
-		account.setAuth(Authorize.Admin);
+		account.setAuth(Authorize.ADMIN);
 		repository.save(account);
 		
 		log.info("---------------------------------------------------------");

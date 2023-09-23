@@ -104,7 +104,7 @@ public class LoginServiceImpl implements LoginService {
 		profile.setNickName(data.getNickName());
 		account.setProfile(profile);
 		account.setHeart(new Heart());
-		account.setAuth(Authorize.NonAuth);
+		account.setAuth(Authorize.NONAUTH);
 		
 		account.save(this.repository);
 	}
