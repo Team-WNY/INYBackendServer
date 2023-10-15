@@ -5,8 +5,8 @@ import com.iny.opensoftware.domain.board.comment.Comment;
 import com.iny.opensoftware.domain.board.content.Content;
 import com.iny.opensoftware.domain.board.enums.RoomType;
 import com.iny.opensoftware.domain.board.enums.Status;
-import com.iny.opensoftware.domain.board.image.Image;
 import com.iny.opensoftware.domain.common.DomainEntity;
+import com.iny.opensoftware.domain.file.File;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class Board {
 	private Instant upLoadTime;
 	private Content content;
 	private List<Comment> comments;
-	private List<Image> images;
+	private List<File> images;
 	private Status roomStatus;
 	private RoomType roomType;
 	private Boolean delType;

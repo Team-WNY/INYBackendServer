@@ -1,4 +1,4 @@
-package com.iny.opensoftware.domain.board.image;
+package com.iny.opensoftware.domain.file;
 
 import com.iny.opensoftware.domain.common.DomainEntity;
 
@@ -8,6 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @DomainEntity
 @RequiredArgsConstructor
-public class Image {
-
+public class File {
+	
 }
