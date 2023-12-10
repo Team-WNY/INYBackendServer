@@ -15,5 +15,20 @@ create sequence account_sequence start 1 increment 1;
     follower_count INTEGER,
     following_count INTEGER,
     uploaded_ami_count INTEGER,
-    auth VARCHAR(10) NOT NULL
+    del_type BOOLEAN DEFAULT FALSE,
+    auth VARCHAR(10) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE OR REPLACE FUNCTION update_update_at()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.update_at = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_at_trigger
+BEFORE UPDATE ON account
+FOR EACH ROW EXECUTE FUNCTION update_update_at();

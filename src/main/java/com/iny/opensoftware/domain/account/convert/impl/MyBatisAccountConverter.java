@@ -26,6 +26,7 @@ public class MyBatisAccountConverter implements AccountConverter<AccountObject> 
 		a.setFollowing(obj.getFollowing());
 		a.setUploadAmiCount(obj.getUploadAmiCount());
 		a.setAuth(Authorize.valueOf(obj.getAuth()));
+		a.setDelType(obj.isDelType());
 		
 		return a;
 	}

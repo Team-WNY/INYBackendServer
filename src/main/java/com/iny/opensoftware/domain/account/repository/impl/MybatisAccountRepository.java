@@ -92,7 +92,12 @@ public class MybatisAccountRepository implements AccountRepository{
 		return Optional.ofNullable(this.mapper.findAccountIdByEmail(email))
 				.orElse(null);
 	}
-
+	
+	@Override
+	public Boolean deleteAccount(String accountId) {
+		return this.mapper.deleteAccount(accountId);
+	}
+	
 	/**
 	 * 도메인에서 DB 오브젝트로 변경하는 함수
 	 * @param account
@@ -118,8 +123,8 @@ public class MybatisAccountRepository implements AccountRepository{
 		obj.setFollowing(Optional.ofNullable(account.getFollowing()).orElse(0));
 		obj.setUploadAmiCount(Optional.ofNullable(account.getUploadAmiCount()).orElse(0));
 		obj.setAuth(Optional.ofNullable(account.getAuth().name()).orElse("NonAuth"));
+		obj.setDelType(Optional.ofNullable(account.getDelType()).orElse(false));
 		
 		return obj;
 	}
-
 }

@@ -48,5 +48,11 @@ public class AccountObject {
 	private Integer uploadAmiCount;
 	
 	private String auth;
+	
+	private boolean delType;
+	
+	private Timestamp createAt;
+	
+	private Timestamp updateAt;
 
 }

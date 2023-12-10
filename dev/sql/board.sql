@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS board (
     location VARCHAR(255),
     room_status VARCHAR(15),
     room_type VARCHAR(15),
-    del_type VARCHAR(2),
+    del_type BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT current_timestamp,
     updated_at TIMESTAMP DEFAULT current_timestamp
 );
@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS comment (
     board_id INT NOT NULL,
     content TEXT,
     commenter VARCHAR(50) NOT NULL,
+    del_type BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT current_timestamp,
     updated_at TIMESTAMP DEFAULT current_timestamp
 );

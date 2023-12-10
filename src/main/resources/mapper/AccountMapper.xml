@@ -22,36 +22,36 @@
   
   <select id="selectAccountById" resultMap="accountResultMap" parameterType="long">
     SELECT *
-    FROM Account
+    FROM account
     WHERE id = #{id}
   </select>
   
   <select id="findAccountIdByEmail" resultType="String" parameterType="String">
     SELECT account_id
-    FROM Account
+    FROM account
     WHERE email = #{email}
   </select>
   
   <select id="selectAccountByAccountId" resultMap="accountResultMap" parameterType="String">
     SELECT *
-    FROM Account
+    FROM account
     WHERE account_id = #{accountId}
   </select>
   
   <select id="selectAllAccount" resultMap="accountResultMap">
     SELECT *
-    FROM Account
+    FROM account
   </select>
   
   <select id="isAccountId" resultType="String" parameterType="String">
     SELECT account_id
-    FROM Account
+    FROM account
     WHERE account_id = #{accountId}
   </select>
   
 
   <insert id="insertAccount" parameterType="AccountObject">
-    INSERT INTO Account (
+    INSERT INTO account (
         account_id,
         password,
         name,
@@ -107,8 +107,14 @@
 
 <select id="nowId" resultType="long" parameterType="String">
     SELECT id
-    FROM Account
+    FROM account
     WHERE account_id = #{accountId}
 </select>
+
+<update id="deleteAccount" parameterType="boolean">
+	UPDATE account
+	SET del_type = true
+	WHERE account_id = #{accountId}
+</update>
 
 </mapper>

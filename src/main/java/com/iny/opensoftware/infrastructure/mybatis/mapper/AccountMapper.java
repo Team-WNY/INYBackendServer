@@ -19,4 +19,5 @@ public interface AccountMapper {
 	Integer updateAccount(AccountObject data);
 	Long nowId(@Param("accountId") String accountId);
 	String findAccountIdByEmail(@Param("email") String email);
+	Boolean deleteAccount(@Param("accountId") String accountId);
 }

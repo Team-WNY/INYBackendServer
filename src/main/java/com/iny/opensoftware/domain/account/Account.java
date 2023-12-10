@@ -24,6 +24,7 @@ public class Account {
 	private Integer follower;
 	private Integer following;
 	private Integer uploadAmiCount;
+	private Boolean delType;
 	private Authorize auth;
 	
 	/**
@@ -66,6 +67,7 @@ public class Account {
 		this.setFollower(stored.getFollower());
 		this.setFollowing(stored.getFollowing());
 		this.setUploadAmiCount(stored.getUploadAmiCount());
+		this.setDelType(stored.getDelType());
 	}
 
 	/**
@@ -84,6 +86,7 @@ public class Account {
 		this.setFollower(stored.getFollower());
 		this.setFollowing(stored.getFollowing());
 		this.setUploadAmiCount(stored.getUploadAmiCount());
+		this.setDelType(stored.getDelType());
 	}
 	
 	/**
@@ -210,6 +213,17 @@ public class Account {
 	 */
 	public String findAccountId(AccountRepository repository) {
 		return repository.getAccountIdByEmail(this.profile.getEmail());
+	}
+	
+	/**
+	 * 계정 삭제
+	 * @param repository
+	 * @return
+	 */
+	public Boolean deleteAccount(AccountRepository repository) {
+		Assert.notNull(this.accountId, "계정 Id는 null일 수 없습니다.");
+		
+		return repository.deleteAccount(this.accountId);
 	}
 	
 	

@@ -9,4 +9,5 @@ public interface AccountRepository {
 	List<Account> getAllAccount();
 	Boolean isAccount(String accountId);
 	String getAccountIdByEmail(String email);
+	Boolean deleteAccount(String accountId);
 }
