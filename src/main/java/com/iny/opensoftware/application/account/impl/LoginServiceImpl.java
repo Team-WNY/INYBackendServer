@@ -6,6 +6,7 @@ import java.time.ZoneId;
 import java.util.Base64;
 import java.util.Optional;
 
+import com.iny.opensoftware.application.encrypt.EncryptModule;
 import org.springframework.stereotype.Service;
 
 import com.iny.opensoftware.application.account.LoginService;
@@ -35,9 +36,11 @@ public class LoginServiceImpl implements LoginService {
 	
 	private final AccountMapper mapper;
 	private final EmailVerificationService emailVerificationService;
+	private final EncryptModule encryptModule;
 	private AccountFactory factory;
 	private AccountRepository repository;
-	
+
+
 	private AccountConverter<AccountObject> converter;
 	
 	// 임시 비밀번호 길이
@@ -144,7 +147,8 @@ public class LoginServiceImpl implements LoginService {
 		
 		account.fetchByAccountId(this.repository);
 		
-		String tmpPassword = this.generateTemporaryPassword();
+//		String tmpPassword = this.generateTemporaryPassword();
+		String tmpPassword = encryptModule.tmpRandomPwd();
 		account.setPassword(tmpPassword);
 		
 		account.save(this.repository);

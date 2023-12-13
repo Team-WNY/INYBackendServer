@@ -3,6 +3,7 @@ package com.iny.opensoftware.application.encrypt;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 
+import com.iny.opensoftware.application.encrypt.exception.DecryptException;
 import com.iny.opensoftware.application.encrypt.exception.EncryptException;
 
 /**
@@ -16,7 +17,7 @@ public interface EncryptModule {
 	String encrypt(String plainText, SecretKey key, IvParameterSpec iv) throws EncryptException;
 	
 	// 복호화를 진행하는 함수
-	String decrypt(String cipherText, SecretKey key, IvParameterSpec iv) throws Exception;
+	String decrypt(String cipherText, SecretKey key, IvParameterSpec iv) throws DecryptException;
 	
 	// 난수 발급
 	String tmpRandomPwd();

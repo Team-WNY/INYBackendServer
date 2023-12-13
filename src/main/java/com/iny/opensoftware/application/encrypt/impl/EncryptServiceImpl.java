@@ -2,6 +2,7 @@ package com.iny.opensoftware.application.encrypt.impl;
 
 import com.iny.opensoftware.application.account.LoginService;
 import com.iny.opensoftware.application.encrypt.EncryptModule;
+import com.iny.opensoftware.application.encrypt.exception.DecryptException;
 import com.iny.opensoftware.application.encrypt.exception.EncryptException;
 import com.iny.opensoftware.application.exception.AccountFindFailedException;
 import com.iny.opensoftware.application.exception.AccountVerifyFailException;
@@ -45,7 +46,7 @@ import java.util.Optional;
 // AESJpaService
 @Service
 @RequiredArgsConstructor
-public class EncrtptServiceImpl implements EncryptModule {
+public class EncryptServiceImpl implements EncryptModule {
 	
 	private final int TEMP_PASSWORD_LENGTH = 10;
 	// 대문자로(상수라서)
@@ -69,19 +70,33 @@ public class EncrtptServiceImpl implements EncryptModule {
 		}
 		
 		
-		if (encrypted == null) {
+		if (encrypted == null)
 			throw new EncryptException("암호화된 구문을 반환받지 못하였습니다.");
-		}
+
 		
 		return new String(Base64.getEncoder().encode(encrypted));
 	}
 
 
 	@Override
-	public String decrypt(String cipherText,SecretKey key, IvParameterSpec iv ) throws Exception {
-		Cipher cipher = Cipher.getInstance(specName);
-		cipher.init(Cipher.DECRYPT_MODE, key, iv);
-		byte[] decrypted = cipher.doFinal(Base64.getDecoder().decode(cipherText));
+	public String decrypt(String cipherText,SecretKey key, IvParameterSpec iv ) throws DecryptException {
+		Assert.hasText(cipherText, "암호은 null이거나, 공백일 수 없습니다.");
+		Cipher cipher;
+		byte[] decrypted;
+
+		try {
+			cipher = Cipher.getInstance(specName);
+			cipher.init(Cipher.DECRYPT_MODE, key, iv);
+
+			decrypted = cipher.doFinal(Base64.getDecoder().decode(cipherText));
+		}catch (Exception e){
+			e.printStackTrace();
+			throw new DecryptException("복호화 로직에서 실패하였습니다.");
+		}
+
+		if (decrypted == null)
+			throw new DecryptException("복호화된 구문을 반환받지 못하였습니다.");
+
 		return new String(decrypted, StandardCharsets.UTF_8);
 	}
 
@@ -92,11 +107,14 @@ public class EncrtptServiceImpl implements EncryptModule {
 
 	@Override
 	public boolean hashMatch(String plainText, String ciperText){
+		Assert.hasText(plainText, "평문은 null이거나, 공백일 수 없습니다.");
+		Assert.hasText(ciperText, "암호문은 null이거나, 공백일 수 없습니다.");
 		return BCrypt.checkpw(plainText, ciperText);
 	}
 
 	@Override
 	public String hashEncrypt(String plainText){
+		Assert.hasText(plainText, "평문은 null이거나, 공백일 수 없습니다.");
 		return BCrypt.hashpw(plainText,BCrypt.gensalt());
 	}
 
