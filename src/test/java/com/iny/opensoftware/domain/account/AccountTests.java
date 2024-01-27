@@ -77,7 +77,7 @@ public class AccountTests {
 	public void 도메인_테스트() {
 		Account account = this.factory.getInstance();
 		
-		account.setId(AccountId.of(5));
+		account.setId(AccountId.of(3));
 		account.fetchById(this.repository);
 		
 		log.info("---------------------------------------------------------");
@@ -135,7 +135,7 @@ public class AccountTests {
 		
 		Account account2 = this.factory.getInstance();
 		
-		account2.setAccountId("Test");
+		account2.setAccountId("Test3");
 		account2.fetchByAccountId(repository);
 		account2.setPassword("1234");
 		
@@ -143,7 +143,7 @@ public class AccountTests {
 		log.info("account2" + account2.toString());
 		log.info("---------------------------------------------------------");
 		
-		boolean tmpBool = account2.authenticateAccount(repository, "Test", "1234");
+		boolean tmpBool = account2.authenticateAccount(repository, "Test3", "1234");
 		
 		log.info("---------------------------------------------------------");
 		log.info("account2 yes? : " + tmpBool);

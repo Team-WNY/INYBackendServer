@@ -18,6 +18,8 @@
     <result property="following" column="following_count"/>
     <result property="uploadAmiCount" column="uploaded_ami_count"/>
     <result property="auth" column="auth"/>
+    <result property="createdAt" column="created_at"/>
+    <result property="updatedAt" column="updated_at"/>
   </resultMap>
   
   <select id="selectAccountById" resultMap="accountResultMap" parameterType="long">

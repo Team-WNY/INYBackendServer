@@ -51,8 +51,8 @@ public class AccountObject {
 	
 	private boolean delType;
 	
-	private Timestamp createAt;
+	private Timestamp createdAt;
 	
-	private Timestamp updateAt;
+	private Timestamp updatedAt;
 
 }
